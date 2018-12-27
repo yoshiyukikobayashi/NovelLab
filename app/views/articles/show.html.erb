@@ -1,18 +1,19 @@
-<p>
-  <strong>Title:</strong>
+<h1>
+  <strong></strong>
   <%= @article.title %>
-</p>
+</h1>
  
 <p>
-  <strong>Text:</strong>
+  <strong>あらすじ<br></strong>
   <%= @article.text %>
 </p>
+<%= link_to '編集する', edit_article_path %>
+<%= link_to '削除する', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' } %>
 
-<h2>Comments</h2>
+<h2>各話</h2>
 <%= render @article.comments %>
 
-<h2>Add a comment:</h2>
+<h2>話の追加</h2>
 <%= render "comments/form" %>
 
-<%= link_to 'Edit Article', edit_article_path(@article) %> |
-<%= link_to 'Back to Articles', articles_path %>
+<%= link_to '戻る', articles_path %>
