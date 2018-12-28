@@ -1,4 +1,6 @@
-<%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
+<h1>話の編集</h1>
+ 
+<%= form_with(model: [ @article, @comment ], local: true) do |form| %>
   <p>
     <!--<%= form.label :commenter %><br>-->
     小タイトル<br>
@@ -13,3 +15,5 @@
     <%= form.submit %>
   </p>
 <% end %>
+ 
+<%= link_to '戻る', article_comment_path(@article, @comment) %>
