@@ -10,10 +10,7 @@
 <%= link_to '編集する', edit_article_path %>
 <%= link_to '削除する', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' } %>
 
-<h2>各話</h2>
+<p><strong>各話</strong> <%= link_to '追加する', new_article_comment_path(@article), method: :get %></p>
 <%= render @article.comments %>
-
-<h2>話の追加</h2>
-<%= render "comments/form" %>
 
 <%= link_to '戻る', articles_path %>
