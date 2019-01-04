@@ -10,11 +10,13 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
-  
+
   def create
     @user = User.new(user_params)
     @articles = @user.articles.all
     if @user.save
+      # TODO : ログインセッションをセットする
+      # TODO : helper methodで呼べる様にしておく
       flash[:success] = "作者ページへようこそ!"
       redirect_to user_articles_path(@user, @articles)
     else
@@ -25,6 +27,6 @@ class UsersController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
-    end  
+    end
 
 end
