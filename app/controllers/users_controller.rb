@@ -13,9 +13,10 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(user_params)
+    @articles = @user.articles.all
     if @user.save
       flash[:success] = "作者ページへようこそ!"
-      redirect_to @user
+      redirect_to user_articles_path(@user, @articles)
     else
       render 'new'
     end
