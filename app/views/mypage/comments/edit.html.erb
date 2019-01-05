@@ -1,0 +1,19 @@
+<h1>話の編集</h1>
+ 
+<%= form_with model: @comment, url: update_mypage_user_article_comment_path, local: true do |form| %>
+  <p>
+    <!--<%= form.label :commenter %><br>-->
+    小タイトル<br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    <!--<%= form.label :body %><br>-->
+    本文<br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+ 
+<%= link_to '戻る', mypage_user_article_comment_path(@user, @article, @comment) %>

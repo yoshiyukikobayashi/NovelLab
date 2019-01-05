@@ -1,0 +1,18 @@
+<h1>作者ホーム</h1>
+
+<%= link_to '小説を新規作成', new_mypage_user_article_path %>
+<table>
+  <tr>
+    <th>連載中の小説</th>
+  </tr>
+
+
+<% @articles.each do |article| %>
+  <tr>
+    <td><%= link_to article.title, mypage_user_article_path(@user, article) %></td>
+  </tr>
+<% end %>
+
+
+</table>
+<%= link_to '戻る', root_path %>

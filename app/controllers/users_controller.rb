@@ -13,12 +13,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @articles = @user.articles.all
     if @user.save
       # TODO : ログインセッションをセットする
       # TODO : helper methodで呼べる様にしておく
       flash[:success] = "作者ページへようこそ!"
-      redirect_to user_articles_path(@user, @articles)
+      redirect_to mypage_user_articles_path(@user)
     else
       render 'new'
     end
