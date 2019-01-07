@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
 #reding page configuration
 
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
+
   get 'users/new'
   get 'signup'  => 'users#new'
   resources :users do

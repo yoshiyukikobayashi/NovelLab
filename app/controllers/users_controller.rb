@@ -14,8 +14,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # TODO : ログインセッションをセットする
-      # TODO : helper methodで呼べる様にしておく
+      log_in @user
       flash[:success] = "作者ページへようこそ!"
       redirect_to mypage_user_articles_path(@user)
     else
