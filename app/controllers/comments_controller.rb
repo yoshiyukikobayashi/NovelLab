@@ -1,46 +1,23 @@
 class CommentsController < ApplicationController
 
   def show
-    @article = Article.find(params[:article_id])
+    @user = User.find(params[:user_id])
+    @article = @user.articles.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
-  end
-
-  def new
-    @article = Article.find(params[:article_id])
-    @comment = @article.comments.new
-  end
-
-  def edit
-    @article = Article.find(params[:article_id])
-    @comment = @article.comments.find(params[:id])
-  end
-
-  def create
-    @article = Article.find(params[:article_id])
-    @comment = @article.comments.create(comment_params)
-    redirect_to article_path(@article)
-  end
-
-  def update
-    @article = Article.find(params[:article_id])
-    @comment = @article.comments.find(params[:id])
-    
-    if @comment.update(comment_params)
-      redirect_to article_comment_path(@article, @comment)
-    else
-      render 'edit'
-    end
-  end
-
-  def destroy
-    @article = Article.find(params[:article_id])
-    @comment = @article.comments.find(params[:id])
-    @comment.destroy
-    redirect_to article_path(@article)
   end
 
   private
-    def comment_params
-      params.require(:comment).permit(:commenter, :body)
-    end
+  
+  def comment_params
+    params.require(:comment).permit(:commenter, :body)
+  end
+  
+  def search_params
+    params.permit(:user_id)
+  end
+
+  def target_user
+    User.find(search_params[:user_id])
+  end
+
 end

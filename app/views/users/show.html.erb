@@ -1,3 +1,16 @@
-<h3>アカウント画面</h3>
-<p>名前：<%= @user.name %></p>
-<p>email：<%= @user.email %></p>
+<h1><%= @user.name%>さんの作者ホーム</h1>
+<table>
+  <tr>
+    <th>連載中の小説</th>
+  </tr>
+
+
+<% @articles.each do |article| %>
+  <tr>
+    <td><%= link_to article.title, user_article_path(@user, article)%></td>
+  </tr>
+<% end %>
+
+
+</table>
+<%= link_to 'ホームへ戻る', root_path %>

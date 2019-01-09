@@ -1,5 +1,17 @@
 <h1>NovelLabのホーム</h1>
 <p>記事一覧</p>
+
+<table>
+<% @contents.each do |content| %>
+  <tr>
+    <td><%= link_to content["comment"].commenter, user_article_comment_path(content["user"], content["article"], content["comment"]) %></td>
+    <td><%= link_to content["article"].title, user_article_path(content["user"], content["article"]) %></td>
+    <td><%= link_to content["user"].name, user_path(content["user"]) %></td>
+    <td><%= content["comment"].created_at %></td>
+  </tr>
+<% end %>
+</table>
+
 <p>ランキングなどを表示</p>
 <%= link_to "作者新規登録", signup_path %>
 <%= link_to "ログイン", login_path %>
