@@ -6,6 +6,7 @@
   <tr>
     <td><%= link_to content["comment"].commenter, user_article_comment_path(content["user"], content["article"], content["comment"]) %></td>
     <td><%= link_to content["article"].title, user_article_path(content["user"], content["article"]) %></td>
+    <td><%= content["article"].category %></td>
     <td><%= link_to content["user"].name, user_path(content["user"]) %></td>
     <td><%= content["comment"].created_at %></td>
   </tr>

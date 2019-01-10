@@ -1,4 +1,6 @@
-<% if @comment.previous(@comment.article_id).nil? %>
+<% if @comment.previous(@comment.article_id).nil? && @comment.next(@comment.article_id).nil? %>
+
+<% elsif @comment.previous(@comment.article_id).nil? %>
   <%= link_to "次の話へ", mypage_user_article_comment_path(@user, @article, @comment.next(@comment.article_id)) %>
 <% elsif @comment.next(@comment.article_id).nil? %>
   <%= link_to "前の話へ", mypage_user_article_comment_path(@user, @article, @comment.previous(@comment.article_id)) %>

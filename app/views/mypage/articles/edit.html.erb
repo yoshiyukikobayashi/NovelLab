@@ -13,13 +13,14 @@
   </div>
   <% end %>
   <p>
-    <!--<%= form.label :title %><br>-->
     小説のタイトル<br>
     <%= form.text_field :title %>
   </p>
- 
+  <p>小説のジャンル</p>
+  <% @categories.each do |category| %>
+    <%= form.radio_button :category, category %><%= form.label category %>
+  <% end%>
   <p>
-    <!--<%= form.label :text %><br>-->
     あらすじ<br>
     <%= form.text_area :text %>
   </p>

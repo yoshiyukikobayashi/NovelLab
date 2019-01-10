@@ -2,12 +2,14 @@
 <table>
   <tr>
     <th>連載中の小説</th>
+    <th>ジャンル</th>
   </tr>
 
 
 <% @articles.each do |article| %>
   <tr>
     <td><%= link_to article.title, user_article_path(@user, article)%></td>
+    <td><%= article.category %>
   </tr>
 <% end %>
 

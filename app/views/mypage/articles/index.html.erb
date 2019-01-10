@@ -8,10 +8,12 @@
 <table>
   <tr>
     <th>連載中の小説</th>
+    <th>ジャンル</th>
   </tr>
   <% @articles.each do |article| %>
     <tr>
       <td><%= link_to article.title, mypage_user_article_path(@user, article) %></td>
+      <td><%= article.category %></td>
     </tr>
   <% end %>
 </table>

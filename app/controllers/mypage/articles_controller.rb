@@ -14,11 +14,15 @@ class Mypage::ArticlesController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @article = target_user.articles.new
+    @categories = [:純文学, :ミステリー, :青春, :恋愛, :ＳＦ, :ファンタジー, :ホラー, :ライトノベル, 
+                      :経済, :政治, :歴史, :児童, :官能]
   end
 
   def edit
     @user = User.find(params[:user_id])
     @article = target_user.articles.find(params[:id])
+    @categories = [:純文学, :ミステリー, :青春, :恋愛, :ＳＦ, :ファンタジー, :ホラー, :ライトノベル, 
+                      :経済, :政治, :歴史, :児童, :官能]
   end
 
   def create
@@ -53,7 +57,7 @@ class Mypage::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :text)
+    params.require(:article).permit(:title, :text, :category)
   end
 
   def search_params
