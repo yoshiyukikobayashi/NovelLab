@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :articles, dependent: :destroy
   has_many :comments, through: :articles, dependent: :destroy
+  has_many :tweets, through: :articles, through: :comments, dependent: :destroy
 
   before_save { self.email = email.downcase }
 end

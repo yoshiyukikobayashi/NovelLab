@@ -1,3 +1,12 @@
+<% if @comment.previous(@comment.article_id).nil? %>
+  <%= link_to "次の話へ", user_article_comment_path(@user, @article, @comment.next(@comment.article_id)) %>
+<% elsif @comment.next(@comment.article_id).nil? %>
+  <%= link_to "前の話へ", user_article_comment_path(@user, @article, @comment.previous(@comment.article_id)) %>
+<% else %>
+  <%= link_to "前の話へ", user_article_comment_path(@user, @article, @comment.previous(@comment.article_id)) %>
+  <%= link_to "次の話へ", user_article_comment_path(@user, @article, @comment.next(@comment.article_id)) %>
+<% end %>
+
 <p>
   <strong>小タイトル<br></strong>
   <%= @comment.commenter %>
@@ -7,5 +16,26 @@
   本文<br>
   <%= @comment.body %>
 </p>
+
+<ul>
+  <% @comment.tweets.each do |tweet| %>
+    <li><%= tweet.commenter %>さんのコメント：<%= tweet.body %><%= link_to "削除する", delete_user_article_comment_tweet_path(@user, @article, @comment, tweet), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  <% end %>
+</ul>
+
+<%= form_with model: [ @comment, @comment.tweets.build ], url: create_user_article_comment_tweet_path, local: true do |form| %>
+  <p>
+    ニックネーム<br>
+    <%= form.text_field :commenter %>
+  </p>
+  <p>
+    コメント<br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
 
 <%= link_to '小説タイトルに戻る', user_article_path(@user, @article) %>

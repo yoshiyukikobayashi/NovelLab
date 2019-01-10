@@ -2,7 +2,9 @@
   <strong></strong>
   <%= @article.title %>
 </h1>
- 
+
+<p>作者：<%= @user.name %></p>
+
 <p>
   <strong>あらすじ<br></strong>
   <%= @article.text %>
@@ -17,4 +19,4 @@
 </ul>
 
 
-<%= link_to 'ホームに戻る', root_path %>
+<%= link_to '作者ホームに戻る', user_path(@user) %>

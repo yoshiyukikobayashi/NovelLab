@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get 'users/new'
   get 'signup'  => 'users#new'
+  
   resources :users do
     resources :articles do
       resources :comments
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+  post 'users/:user_id/articles/:article_id/comments/:id', to: 'tweets#create', as: 'create_user_article_comment_tweet'
+  delete 'users/:user_id/articles/:article_id/comments/:comment_id/tweets/:id', to: 'tweets#destroy', as: 'delete_user_article_comment_tweet'
 
 #mypage configuration
 
