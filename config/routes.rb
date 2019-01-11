@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'search/index'
 #reding page configuration
 
   get    'login'   => 'sessions#new'
@@ -21,6 +22,8 @@ Rails.application.routes.draw do
 
   post 'users/:user_id/articles/:article_id/comments/:id', to: 'tweets#create', as: 'create_user_article_comment_tweet'
   delete 'users/:user_id/articles/:article_id/comments/:comment_id/tweets/:id', to: 'tweets#destroy', as: 'delete_user_article_comment_tweet'
+  
+  get    'search'   => 'search#index'
 
 #mypage configuration
 

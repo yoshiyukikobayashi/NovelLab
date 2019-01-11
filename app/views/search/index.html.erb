@@ -1,0 +1,22 @@
+<h1>検索ページ</h1>
+
+<p>検索</p>
+<%= form_tag(search_path,:method => 'get') do %>
+  <%= text_field_tag :search %><br>
+  <%= select :category, :name, @categories, :include_blank => true %><br>
+  <%= submit_tag 'Search', :name => nil %>
+<% end %>
+<%= @articlecountself%>/<%= @articlecountall%>
+<table>
+<% @contents.each do |content| %>
+  <tr>
+    <td><%= link_to content["article"].title, user_article_path(content["user"], content["article"]) %></td>
+    <td><%= content["article"].text %></td>
+    <td><%= content["article"].category %></td>
+    <td><%= link_to content["user"].name, user_path(content["user"]) %></td>
+    <td><%= content["article"].created_at %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'ホームに戻る', root_path %>
