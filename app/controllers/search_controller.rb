@@ -6,7 +6,7 @@ class SearchController < ApplicationController
     @contents = []
     @users = User.all
     @articlecountall = Article.all.count
-    @articles = params[:category].nil? ? Article.all : Article.search(params[:search], params[:category][:name])
+    @articles = params[:category].nil? ? Article.all.order("RANDOM()") : Article.search(params[:search], params[:category][:name]).order("RANDOM()")
     @articlecountself = @articles.count
     @articles.each do |article|
       @content = {}

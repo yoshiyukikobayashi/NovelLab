@@ -57,7 +57,7 @@ class Mypage::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :text, :category)
+    params.require(:article).permit(:title, :text, :category, :status)
   end
 
   def search_params

@@ -1,18 +1,29 @@
 <h1>NovelLabのホーム</h1>
-<p>記事一覧</p>
-
+<p><%= link_to "検索ページへ", search_path %></p>
+<p>更新された連載中小説</p>
 <table>
 <% @contents.each do |content| %>
   <tr>
+    <td><%= content["comment"].created_at %></td>
     <td><%= link_to content["comment"].commenter, user_article_comment_path(content["user"], content["article"], content["comment"]) %></td>
     <td><%= link_to content["article"].title, user_article_path(content["user"], content["article"]) %></td>
     <td><%= content["article"].category %></td>
     <td><%= link_to content["user"].name, user_path(content["user"]) %></td>
-    <td><%= content["comment"].created_at %></td>
   </tr>
 <% end %>
 </table>
-<p><%= link_to "検索ページへ", search_path %></p>
+
+<p>完結済みの小説</p>
+<table>
+<% @contents1.each do |content1| %>
+  <tr>
+    <td><%= link_to content1["article"].title, user_article_path(content1["user"], content1["article"]) %></td>
+    <td><%= content1["article"].category %></td>
+    <td><%= link_to content1["user"].name, user_path(content1["user"]) %></td>
+  </tr>
+<% end %>
+</table>
+
 <p>ランキングなどを表示</p><br>
 <%= link_to "作者新規登録", signup_path %>
 <%= link_to "ログイン", login_path %>

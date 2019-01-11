@@ -24,7 +24,10 @@
     あらすじ<br>
     <%= form.text_area :text %>
   </p>
- 
+  <p>
+    <br>
+    <%= form.radio_button :status, false %>連載中　<%= form.radio_button :status, true %>完結済み
+  </p>
   <p>
     <%= form.submit %>
   </p>

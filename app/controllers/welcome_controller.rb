@@ -12,6 +12,15 @@ class WelcomeController < ApplicationController
       @content["user"] = @users.find_by(id: @articles.find_by(id: comment.article_id).user_id)
       @contents.push(@content)
     end
+    
+    @contents1 = []
+    @articles = Article.all.order("RANDOM()").where(status: true)
+    @articles.each do |article|
+      @content1 = {}
+      @content1["article"] = article
+      @content1["user"] = @users.find_by(id: article.user_id)
+      @contents1.push(@content1)
+    end
   end
 
 end
