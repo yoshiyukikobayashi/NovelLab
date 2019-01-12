@@ -19,6 +19,9 @@
   <%= @comment.body %>
 </p>
 
+
+<p>コメント一覧</p>
+
 <ul>
   <% @comment.tweets.each do |tweet| %>
     <li><%= tweet.commenter %>さんのコメント：<%= tweet.body %><%= link_to "削除する", delete_user_article_comment_tweet_path(@user, @article, @comment, tweet), method: :delete, data: { confirm: 'Are you sure?' } %></li>
