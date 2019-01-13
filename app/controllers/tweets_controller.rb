@@ -22,7 +22,7 @@ class TweetsController < ApplicationController
   private
   
   def tweet_params
-    params.require(:tweet).permit(:commenter, :body)
+    params.require(:tweet).permit(:commenter, :body, :reader_id)
   end
 
   def search_params

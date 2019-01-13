@@ -28,19 +28,20 @@
   <% end %>
 </ul>
 
-<%= form_with model: [ @comment, @comment.tweets.build ], url: create_user_article_comment_tweet_path, local: true do |form| %>
-  <p>
-    ニックネーム<br>
-    <%= form.text_field :commenter %>
-  </p>
-  <p>
-    コメント<br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
+<% if is_logged_in_reader? %>
+  <%= form_with model: [ @comment, @comment.tweets.build ], url: create_user_article_comment_tweet_path, local: true do |form| %>
+    <p>
+      <%= form.hidden_field :commenter, :value => current_reader.name %>
+    </p>
+    <p>
+      コメント<br>
+      <%= form.text_area :body %>
+    </p>
+    <p>
+      <%= form.submit %>
+      <%= form.hidden_field :reader_id, :value => current_reader.id %>
+    </p>
+  <% end %>
 <% end %>
-
 
 <%= link_to '小説タイトルに戻る', user_article_path(@user, @article) %>

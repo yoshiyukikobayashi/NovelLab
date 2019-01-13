@@ -38,7 +38,7 @@
 
 <table>
   <tr>
-    <th><%= @user.name%>さんへのコメント一覧</th>
+    <th><%= current_user.name%>さんへのコメント一覧</th>
   </tr>
   <% @tweets.each do |tweet| %>
     <tr>

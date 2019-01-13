@@ -1,4 +1,8 @@
 <h1>NovelLabのホーム</h1>
+<% if is_logged_in_reader? %>
+<%= current_reader.name %>さんがログイン中 <%= link_to "ログアウト", logout_reader_path, method: :delete %>
+<% end %>
+
 <p><%= link_to "検索ページへ", search_path %></p>
 <p>更新された連載中小説</p>
 <table>
@@ -26,4 +30,9 @@
 
 <p>ランキングなどを表示</p><br>
 <%= link_to "作者新規登録", signup_path %>
-<%= link_to "ログイン", login_path %>
+<%= link_to "作者ログイン", login_path %><br>
+<%= link_to "読者新規登録", signupreader_path %>
+<% if is_logged_in_reader? %>
+<% else %>
+<%= link_to "読者ログイン", login_reader_path %><br>
+<% end %>

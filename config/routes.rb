@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   get 'search/index'
-#reding page configuration
+  
+#reader page configuration
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
@@ -25,6 +26,17 @@ Rails.application.routes.draw do
   
   get    'search'   => 'search#index'
 
+  resources :readers do
+    resources :tweets
+  end
+
+  get    'login_reader'   => 'sessions#new_reader'
+  post   'login_reader'   => 'sessions#create_reader'
+  delete 'logout_reader'  => 'sessions#destroy_reader'
+  get 'signupreader'  => 'readers#new'
+  post 'create_reader'  => 'readers#create'
+
+
 #mypage configuration
 
   namespace :mypage do
@@ -44,5 +56,5 @@ Rails.application.routes.draw do
   get '/mypage/users/:user_id/configurations', to: 'mypage/configurations#show', as: 'mypage_user_configuration'
   get '/mypage/users/:user_id/configurations/edit', to: 'mypage/configurations#edit', as: 'edit_mypage_user_configuration'
   patch '/mypage/users/:user_id/configurations', to: 'mypage/configurations#update', as: 'update_mypage_user_configuration'
-  
+
 end
