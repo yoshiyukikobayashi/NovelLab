@@ -8,7 +8,7 @@
   <% @articles.each do |article| %>
     <% unless article.status %>
     <tr>
-      <td><%= link_to article.title, mypage_user_article_path(@user, article) %></td>
+      <td><%= link_to article.title, user_article_path(@user, article) %></td>
       <td><%= article.category %></td>
     </tr>
     <% end %>
@@ -23,7 +23,7 @@
   <% @articles.each do |article| %>
     <% unless !article.status %>
     <tr>
-      <td><%= link_to article.title, mypage_user_article_path(@user, article) %></td>
+      <td><%= link_to article.title, user_article_path(@user, article) %></td>
       <td><%= article.category %></td>
     </tr>
     <% end %>
