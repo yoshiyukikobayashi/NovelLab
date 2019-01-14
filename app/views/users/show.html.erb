@@ -1,18 +1,34 @@
 <h1><%= @user.name%>さんの作者ホーム</h1>
+
 <table>
   <tr>
     <th>連載中の小説</th>
     <th>ジャンル</th>
   </tr>
-
-
-<% @articles.each do |article| %>
-  <tr>
-    <td><%= link_to article.title, user_article_path(@user, article)%></td>
-    <td><%= article.category %>
-  </tr>
-<% end %>
-
-
+  <% @articles.each do |article| %>
+    <% unless article.status %>
+    <tr>
+      <td><%= link_to article.title, mypage_user_article_path(@user, article) %></td>
+      <td><%= article.category %></td>
+    </tr>
+    <% end %>
+  <% end %>
 </table>
+
+<table>
+  <tr>
+    <th>完結済みの小説</th>
+    <th>ジャンル</th>
+  </tr>
+  <% @articles.each do |article| %>
+    <% unless !article.status %>
+    <tr>
+      <td><%= link_to article.title, mypage_user_article_path(@user, article) %></td>
+      <td><%= article.category %></td>
+    </tr>
+    <% end %>
+  <% end %>
+</table>
+
+
 <%= link_to 'ホームへ戻る', root_path %>

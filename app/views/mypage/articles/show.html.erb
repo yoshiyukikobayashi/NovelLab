@@ -3,6 +3,12 @@
   <%= @article.title %>
 </h1>
 <br>ジャンル：<%= @article.category %>
+<% if @article.status %>
+<br>完結済み
+<% else %>
+<br>連載中
+<% end %>
+
 <p>
   <strong>あらすじ<br></strong>
   <%= @article.text %>
