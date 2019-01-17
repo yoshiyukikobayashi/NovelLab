@@ -14,14 +14,14 @@ class Mypage::ArticlesController < ApplicationController
   def new
     @user = User.find(params[:user_id])
     @article = target_user.articles.new
-    @categories = [:純文学, :ミステリー, :青春, :恋愛, :ＳＦ, :ファンタジー, :ホラー, :ライトノベル, 
+    @categories = [:純文学, :ミステリー, :青春, :恋愛, :SF, :ファンタジー, :ホラー, :ライトノベル, 
                       :経済, :政治, :歴史, :児童, :官能]
   end
 
   def edit
     @user = User.find(params[:user_id])
     @article = target_user.articles.find(params[:id])
-    @categories = [:純文学, :ミステリー, :青春, :恋愛, :ＳＦ, :ファンタジー, :ホラー, :ライトノベル, 
+    @categories = [:純文学, :ミステリー, :青春, :恋愛, :SF, :ファンタジー, :ホラー, :ライトノベル, 
                       :経済, :政治, :歴史, :児童, :官能]
   end
 

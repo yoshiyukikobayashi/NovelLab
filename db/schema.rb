@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_13_181200) do
+ActiveRecord::Schema.define(version: 2019_01_15_112215) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2019_01_13_181200) do
     t.integer "user_id"
     t.integer "category"
     t.boolean "status", default: false, null: false
+    t.integer "comments_count_total", default: 0, null: false
+    t.integer "comment_count_weekly"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 

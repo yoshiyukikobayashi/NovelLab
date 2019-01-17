@@ -28,7 +28,31 @@
 <% end %>
 </table>
 
-<p>ランキングなどを表示</p><br>
+<p>週間ランキング</p>
+<table>
+<% @contents2.each_with_index do |content2, i| %>
+  <tr>
+    <td><%= i+1 %>位</td>
+    <td><%= link_to content2["article"].title, user_article_path(content2["user"], content2["article"]) %></td>
+    <td><%= content2["article"].category %></td>
+    <td><%= link_to content2["user"].name, user_path(content2["user"]) %></td>
+  </tr>
+<% end %>
+</table>
+
+<p>総合ランキング</p>
+<table>
+<% @contents3.each_with_index do |content3, i| %>
+  <tr>
+    <td><%= i+1 %>位</td>
+    <td><%= link_to content3["article"].title, user_article_path(content3["user"], content3["article"]) %></td>
+    <td><%= content3["article"].category %></td>
+    <td><%= link_to content3["user"].name, user_path(content3["user"]) %></td>
+  </tr>
+<% end %>
+</table>
+
+
 <%= link_to "作者新規登録", signup_path %>
 <%= link_to "作者ログイン", login_path %><br>
 <%= link_to "読者新規登録", signupreader_path %>
