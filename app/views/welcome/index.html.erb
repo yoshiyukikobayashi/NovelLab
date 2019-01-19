@@ -1,3 +1,4 @@
+<% provide(:title, "NovelLabホーム") %>
 <h1>NovelLabのホーム</h1>
 <% if is_logged_in_reader? %>
 <%= current_reader.name %>さんがログイン中 <%= link_to "ログアウト", logout_reader_path, method: :delete %>

@@ -1,3 +1,4 @@
+<% provide(:title, "#{@article.title}_追加") %>
 <h1>話の新規作成</h1>
  
 <%= form_with model: @comment, url: create_mypage_user_article_comment_path, local: true do |form| %>

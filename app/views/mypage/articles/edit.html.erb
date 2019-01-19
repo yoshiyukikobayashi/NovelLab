@@ -1,3 +1,4 @@
+<% provide(:title, "#{@article.title}の編集") %>
 <h1>小説の編集</h1>
 
 <%= form_with model: @article, url: update_mypage_user_article_path, local: true do |form| %>

@@ -1,3 +1,4 @@
+<% provide(:title, "#{@article.title}_#{@comment.commenter}") %>
 <% if @comment.previous(@comment.article_id).nil? && @comment.next(@comment.article_id).nil? %>
 
 <% elsif @comment.previous(@comment.article_id).nil? %>
