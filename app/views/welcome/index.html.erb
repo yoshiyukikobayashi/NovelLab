@@ -1,63 +1,78 @@
 <% provide(:title, "NovelLabホーム") %>
-<h1>NovelLabのホーム</h1>
-<% if is_logged_in_reader? %>
-<%= current_reader.name %>さんがログイン中 <%= link_to "ログアウト", logout_reader_path, method: :delete %>
-<% end %>
-
-<p><%= link_to "検索ページへ", search_path %></p>
-<p>更新された連載中小説</p>
-<table>
-<% @contents.each do |content| %>
-  <tr>
-    <td><%= content["comment"].created_at %></td>
-    <td><%= link_to content["comment"].commenter, user_article_comment_path(content["user"], content["article"], content["comment"]) %></td>
-    <td><%= link_to content["article"].title, user_article_path(content["user"], content["article"]) %></td>
-    <td><%= content["article"].category %></td>
-    <td><%= link_to content["user"].name, user_path(content["user"]) %></td>
-  </tr>
-<% end %>
-</table>
-
-<p>完結済みの小説</p>
-<table>
-<% @contents1.each do |content1| %>
-  <tr>
-    <td><%= link_to content1["article"].title, user_article_path(content1["user"], content1["article"]) %></td>
-    <td><%= content1["article"].category %></td>
-    <td><%= link_to content1["user"].name, user_path(content1["user"]) %></td>
-  </tr>
-<% end %>
-</table>
-
-<p>週間ランキング</p>
-<table>
-<% @contents2.each_with_index do |content2, i| %>
-  <tr>
-    <td><%= i+1 %>位</td>
-    <td><%= link_to content2["article"].title, user_article_path(content2["user"], content2["article"]) %></td>
-    <td><%= content2["article"].category %></td>
-    <td><%= link_to content2["user"].name, user_path(content2["user"]) %></td>
-  </tr>
-<% end %>
-</table>
-
-<p>総合ランキング</p>
-<table>
-<% @contents3.each_with_index do |content3, i| %>
-  <tr>
-    <td><%= i+1 %>位</td>
-    <td><%= link_to content3["article"].title, user_article_path(content3["user"], content3["article"]) %></td>
-    <td><%= content3["article"].category %></td>
-    <td><%= link_to content3["user"].name, user_path(content3["user"]) %></td>
-  </tr>
-<% end %>
-</table>
-
-
-<%= link_to "作者新規登録", signup_path %>
-<%= link_to "作者ログイン", login_path %><br>
-<%= link_to "読者新規登録", signupreader_path %>
-<% if is_logged_in_reader? %>
-<% else %>
-<%= link_to "読者ログイン", login_reader_path %><br>
-<% end %>
+  <div class="container2">
+    <nav id="nav2">
+      <a href="#1">新着の更新</a>
+      <a href="#2">完結済み小説</a>
+      <a href="#3">ランキング</a>
+    </nav>
+  </div>
+  <div class="dummy">
+  </div>
+  <div class="intro">
+    <div class="itro_text">
+      <h1 id="logo2">NovelLab</h1>
+      <p>小説を無料で読み書きできるサイトです。</p>
+      <div class="writer_login">
+        <p>作者の方へ</p>
+        <p><%= link_to "作者新規登録", signup_path, id: "w-signin2" %></p>
+        <p><%= link_to "作者ログイン", login_path, id: "w-login2"  %></p>
+      </div>
+      <div class="reader_login">
+        <p>読者の方へ</p>
+        <p><%= link_to "読者新規登録", signupreader_path, id: "r-signin2"  %></p>
+        <p><%= link_to "読者ログイン", login_reader_path, id: "r-login2"  %></p>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="main">
+  <div class="main1">
+    <h1 id="1">更新された連載中小説</h1>
+    <% @contents.each do |content| %>
+    <div class="update">
+      <p>
+        <%= link_to content["article"].title, user_article_path(content["user"], content["article"]) %>  
+        <span>コメント数：<%= content["article"].comments_count_total %></span>  
+        <%= content["article"].category %> by <%= link_to content["user"].name, user_path(content["user"]) %>
+      </p>
+    </div>
+    <% end %>
+  </div>
+  <div class="main2">  
+    <h1  id="2">完結済みの小説</h1>
+    <% @contents1.each do |content1| %>
+    <div class="comp">
+      <div id="left">
+        <p class="comptitle"><%= link_to content1["article"].title, user_article_path(content1["user"], content1["article"]) %></p>
+        <p class="compcategory"><%= content1["article"].category %></p>
+        <p class="compname">by <%= link_to content1["user"].name, user_path(content1["user"]) %></p>
+      </div>
+      <div id="right">
+        <p class="compabst"><%= content1["article"].text %></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="main3">  
+    <h1 id="3">週間ランキング</h1>
+    <% @contents2.each_with_index do |content2, i| %>
+      <div id="rankweek<%=i+1%>">
+        <p class="rankicon"><%= i+1 %></p>
+        <p class="ranktitle"><%= link_to content2["article"].title, user_article_path(content2["user"], content2["article"]) %></p>
+        <p class="rankcategory"><%= content2["article"].category %></p>
+        <p class="rankname">by <%= link_to content2["user"].name, user_path(content2["user"]) %></p>
+      </div>
+    <% end %>
+  </div>
+  <div class="main4">
+    <h1 id="4">総合ランキング</h1>
+    <% @contents3.each_with_index do |content3, i| %>
+      <div id="ranktotal<%=i+1%>">
+        <p class="rankicon"><%= i+1 %></p>
+        <p class="ranktitle"><%= link_to content3["article"].title, user_article_path(content3["user"], content3["article"]) %></p>
+        <p class="rankcategory"><%= content3["article"].category %></p>
+        <p class="rankname">by <%= link_to content3["user"].name, user_path(content3["user"]) %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

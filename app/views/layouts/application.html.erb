@@ -10,6 +10,28 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div class="container1">
+        <nav id="nav1">
+          <%= link_to "NovelLab", '/', id: "logo" %>
+          <%= link_to "作者新規登録", signup_path, id: "w-signin1" %>
+          <%= link_to "作者ログイン", login_path, id: "w-login1"  %>
+          <%= link_to "読者新規登録", signupreader_path, id: "r-signin1"  %>
+          <%= link_to "読者ログイン", login_reader_path, id: "r-login1"  %>
+          <%= link_to "検索", search_path %>
+          <% if is_logged_in_reader? %>
+          <p><%= current_reader.name %>さんがログイン中 <%= link_to "ログアウト", logout_reader_path, method: :delete, class: "logout" %></p>
+          <% end %>
+        </nav>
+      </div>
+      <%= yield %>
+    <footer>
+      <div class="container1">
+        <nav id="nav3">
+          <p>Copyright © NovelLab All Rights Reserved.</p>
+          <%= link_to "NovelLab", '/', id: "logo3" %>
+        </nav>
+      </div>
+    </footer>
   </body>
 </html>

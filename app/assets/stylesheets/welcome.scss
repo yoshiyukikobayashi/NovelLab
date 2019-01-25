@@ -1,3 +1,456 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "compass";
+
+$main-color: desaturate(#2ecc71, 10%);
+// $accent-color: adjust-hue($main-color, 200);
+$accent-color: #e84118;
+$text-color-base: #4a2d08;
+$text-color-main: #ecf0f1;
+
+@mixin line-top($black: .1, $white: .5) {
+  border-top: 1px solid rgba(0, 0, 0, $black);
+  @include box-shadow(rgba(255, 255, 255, $white) 0 1px 0 inset);
+}
+@mixin line-left($black: .1, $white: .5) {
+  border-left: 1px solid rgba(0, 0, 0, $black);
+  @include box-shadow(rgba(255, 255, 255, $white) 0 -1px 0 0);
+}
+@mixin line-right($black: .1, $white: .5) {
+  border-right: 1px solid rgba(0, 0, 0, $black);
+  @include box-shadow(rgba(255, 255, 255, $white) 0 -1px 0 0 inset);
+}
+@mixin line-bottom($black: .1, $white: .5) {
+  border-bottom: 1px solid rgba(0, 0, 0, $black);
+  @include box-shadow(rgba(255, 255, 255, $white) 0 1px 0);
+}
+
+@mixin ts-000($op: .2) {
+  text-shadow: 1px -1px rgba(0, 0, 0, $op);
+}
+@mixin ts-fff($op: .5) {
+  text-shadow: -1px 1px rgba(255, 255, 255, $op);
+}
+
+@mixin gradient-top-lighten($color: #666, $lighten: 5%) {
+  background-color: $color;
+  @include filter-gradient(lighten($color, $lighten), $color, vertical);
+  @include background-image(linear-gradient(lighten($color, $lighten) 0%, $color 100%));
+}
+@mixin gradient-top-darken($color: #666, $darken: 5%) {
+  background-color: $color;
+  @include filter-gradient(darken($color, $darken), $color, vertical);
+  @include background-image(linear-gradient(darken($color, $darken) 0%, $color 100%));
+}
+
+@mixin zurui-box($shadow: 0.15) {
+  @include box-shadow(rgba(0, 0, 0, $shadow) 0 0 2px);
+}
+@mixin rich-box($shadow: .2) {
+  @include box-shadow(rgba(0, 0, 0, $shadow) 0 0 20px inset);
+}
+
+@mixin emboss-box($border: .1, $shadow: .05, $highlight: .5) {
+  border: 1px solid rgba(0, 0, 0, $border);
+  @include box-shadow(rgba(0, 0, 0, $shadow) -1px 1px 0, rgba(255, 255, 255, $highlight) -1px 1px 0 inset);
+}
+
+@mixin button($color: #48B1F2, $font-size: 16px, $text-color: white) {
+  display: inline-block;
+  background-origin: border-box;
+  position: relative;
+  font-weight: bold;
+  @include ts-000(.1);
+  @include gradient-top-lighten($color, 5%);
+  @include border-radius(4px);
+  @include emboss-box($border: .1, $shadow: .1, $highlight: .2);
+  color: rgba($text-color, .9);
+  text-align: center;
+  font-size: $font-size;
+  padding: 0 ($font-size * 2);
+  height: $font-size * 3;
+  line-height: $font-size * 3;
+  i {
+    font-size: 130%;
+    margin-right: 5px; 
+    color: rgba($text-color, .5);
+  }
+  &:hover {
+    @include gradient-top-lighten(lighten($color, 5%), 5%);
+    text-decoration: none;
+    color: $text-color;
+    i {
+      color: $text-color;
+    }
+  }
+  &:active {
+    @include gradient-top-lighten($color, 5%);
+    top: 1px;
+  }
+}
+
+
+body {
+  margin: 0px;
+  // background-image: url("light_noise_diagonal.png");
+  background-image: url("paper.png");
+  // @include gradient-top-lighten($color: #666, 30%);
+}
+
+header {
+  .container1 {
+    position: fixed;
+    z-index: 1;
+    height: 60px;
+    width: 100%;
+    @include rich-box;
+    background-color: $main-color;
+    #nav1 {
+      height: 70px;
+      width: 70%;
+      margin: 0 auto 0;
+      #logo {
+        line-height: 60px;
+        font-weight: bold;
+        font-family: 'Verdana', arial, sans-serif;
+        color: $text-color-main;
+        text-decoration: none;
+        display: inline-block;
+        margin-right: 20px;
+        @include ts-000(.4);
+        font-size: 35px;
+      }
+    }
+    #nav1 * {
+      vertical-align: middle;
+      display: inline-block;
+      line-height: 60px;
+      margin-left: 10px;
+      margin-right: 10px;
+      color: $text-color-main;
+      text-decoration: none;
+      font-size: 14px;
+      @include ts-000(.4);
+    }
+    #nav1 p {
+      float: right;
+      line-height: 60px;
+      margin: 0;
+    }
+  }
+  .container2 {
+    position: fixed;
+    background-image: url("paper.png");
+    @include rich-box;
+    top: 60px;
+    z-index: 1;
+    height: 40px;
+    width: 100%;
+    background-color: #fff;
+    #nav2 {
+      height: 40px;
+      width: 70%;
+      margin: 0 auto 0;
+      a {
+        scroll-behavior: smooth;
+        vertical-align: middle;
+        display: inline-block;
+        line-height: 40px;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: $main-color;
+        text-decoration: none;
+        font-size: 14px;
+        @include ts-fff(.4);
+      }
+    }
+  }
+  .dummy {
+    height: 100px;
+    width: 100%;
+  }
+  .intro {
+    background-image: url("Photoelly043_TP_V.jpg");
+    // padding: 70px 0 0 0;
+    height: 700px;
+    width: 100%;
+    margin-bottom: 10px;
+    background-size: 100% 100%;
+    position: relative;
+    .itro_text {
+      // background-image: url("paper.png");
+      color: $text-color-main;
+      position: absolute;
+      top: 28%;
+      left: 65%;
+      width: 35%;
+      height: 50%;
+      #logo2 {
+        font-weight: bold;
+        font-family: 'Verdana', arial, sans-serif;
+        color: $main-color;
+        @include ts-fff(.4);
+        font-size: 60px;
+      }
+      .writer_login, .reader_login {
+        color: $text-color-main;
+        text-decoration: none;
+        font-size: 14px;
+        display: inline-block;
+        @include ts-000(.4);
+        p {
+          text-align: center;
+        }
+        p #w-signin2 {
+          margin-right: 14px;
+          @include button(#e84118);
+          text-decoration: none;
+          color: #fff;
+          font-size: 14px;
+        }
+        p #w-login2 {
+          text-decoration: none;
+          color: #e84118;
+          font-size: 18px;
+          font-weight: bold;
+          text-align: center;
+        }
+        p #r-signin2 {
+          @include button(#e84118);
+          text-decoration: none;
+          color: #fff;
+          font-size: 14px;
+        }
+        p #r-login2 {
+          text-decoration: none;
+          color: #e84118;
+          font-size: 18px;
+          font-weight: bold;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.main1 > h1, .main2 > h1, .main3 > h1, .main4 > h1, {
+  margin-top:-100px;
+  margin-bottom:20px;
+  padding-top:110px;
+  font-weight: bold;
+  font-family: 'Verdana', arial, sans-serif;
+  color: $main-color;
+  @include ts-fff(.4);
+  font-size: 24px;
+  @include line-bottom;
+}
+
+.main1 {
+  width: 70%;
+  margin: 30px auto 40px;
+  div.update {
+    height: 30px;
+    width: 100%;
+    margin: 10px 0 10px;
+    background-color: #fff;
+    @include zurui-box(.3);
+    @include border-radius(6px);
+    p {
+      font-size: 12px;
+      text-align: center;
+      text-decoration: none;
+      line-height: 30px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      a {
+        text-decoration: none;
+        color: $text-color-base;
+        font-size: 15px;
+        font-weight: bold;
+      }
+      span {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+.main2 {
+  width: 70%;
+  margin: 30px auto 40px;
+  div.comp {
+    height: 100px;
+    width: 100%;
+    margin: 20px 0 20px;
+    background-color: #fff;
+    @include zurui-box(.3);
+    @include border-radius(6px);
+    div#left {
+      display: inline-block;
+      vertical-align: top;
+      @include border-radius(6px);
+      background-color: rgba(0, 0, 0, 0);
+      height: 100px;
+      width: 20%;
+      margin: 0;
+      background-color: #fff;
+      p.comptitle {
+        text-align: center;
+        float: center;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin: 18px 0px 6px;
+        a {
+          text-decoration: none;
+          color: $text-color-base;
+          font-size: 15px;
+          font-weight: bold;
+        }
+      }
+      p.compcategory {
+        margin-top: 15px;
+        margin-bottom: 6px;
+        text-align: center;
+        text-decoration: none;
+        color: $text-color-base;
+        font-size: 10px;
+        line-height: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      p.compname, p.compname a {
+        margin-top: 6px;
+        text-align: center;
+        text-decoration: none;
+        color: $text-color-base;
+        font-size: 12px;
+        line-height: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+    div#right {
+      display: inline-block;
+      vertical-align: center;
+      @include line-left;
+      height: 95px;
+      width: 77%;
+      margin-top: 3px;
+      background-color: rgba(0, 0, 0, 0);
+      overflow: hidden;
+      p.compabst {
+        margin: 0px 3px 3px 10px;
+        line-height: 19px;
+        text-align: left;
+        color: $text-color-base;
+        font-size: 11px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5;
+      }
+    }
+  }
+}
+
+.main3, .main4 {
+  width: 70%;
+  margin: 30px auto 40px;
+  div {
+    display: inline-block;
+    height: 130px;
+    width: 180px;
+    margin: 15px;
+    background-color: #fff;
+    @include zurui-box(.3);
+    @include border-radius(6px);
+    .rankicon {
+      height: 26px;
+      width: 26px;
+      margin: 10px 10px 8px;
+      @include border-radius(13px);
+      background-color: $accent-color;
+      color: $text-color-main;
+      text-align: center;
+      font-size: 14px;
+      font-weight: bold;
+      @include ts-000(.4);
+      line-height: 26px;
+    }
+    p.ranktitle {
+      text-align: center;
+      float: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      margin: 4px 0px 8px;
+      a {
+        text-decoration: none;
+        color: $text-color-base;
+        font-size: 15px;
+        font-weight: bold;
+      }
+    }
+    p.rankcategory {
+      margin-top: 14px;
+      text-align: center;
+      text-decoration: none;
+      color: $text-color-base;
+      font-size: 10px;
+      line-height: 7px;
+    }
+    p.rankname, p.rankname a {
+      margin-bottom: 22px;
+      text-align: center;
+      text-decoration: none;
+      color: $text-color-base;
+      font-size: 12px;
+      line-height: 7px;
+    }
+
+  }
+}
+
+footer {
+  .container1 {
+    height: 60px;
+    width: 100%;
+    @include rich-box;
+    background-color: $main-color;
+    #nav3 {
+      height: 60px;
+      width: 70%;
+      margin: 0 auto 0;
+      text-align: right;
+      #logo3 {
+        line-height: 60px;
+        font-weight: bold;
+        font-family: 'Verdana', arial, sans-serif;
+        color: $text-color-main;
+        text-decoration: none;
+        display: inline-block;
+        margin-right: 20px;
+        @include ts-000(.4);
+        font-size: 35px;
+      }
+    }
+    #nav3 * {
+      vertical-align: middle;
+      display: inline-block;
+      line-height: 60px;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      color: $text-color-main;
+      text-decoration: none;
+      font-size: 14px;
+      @include ts-000(.4);
+    }
+  }
+}
