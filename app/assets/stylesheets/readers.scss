@@ -1,3 +1,115 @@
 // Place all the styles related to the Readers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "compass";
+
+$main-color: desaturate(#2ecc71, 10%);
+// $accent-color: adjust-hue($main-color, 200);
+$accent-color: #e84118;
+$text-color-base: #4a2d08;
+$text-color-main: #ecf0f1;
+
+@mixin line-top($black: .1, $white: .5) {
+  border-top: 1px solid rgba(0, 0, 0, $black);
+  @include box-shadow(rgba(255, 255, 255, $white) 0 1px 0 inset);
+}
+@mixin line-left($black: .1, $white: .5) {
+  border-left: 1px solid rgba(0, 0, 0, $black);
+  @include box-shadow(rgba(255, 255, 255, $white) 0 -1px 0 0);
+}
+@mixin line-right($black: .1, $white: .5) {
+  border-right: 1px solid rgba(0, 0, 0, $black);
+  @include box-shadow(rgba(255, 255, 255, $white) 0 -1px 0 0 inset);
+}
+@mixin line-bottom($black: .1, $white: .5) {
+  border-bottom: 1px solid rgba(0, 0, 0, $black);
+  @include box-shadow(rgba(255, 255, 255, $white) 0 1px 0);
+}
+
+@mixin ts-000($op: .2) {
+  text-shadow: 1px -1px rgba(0, 0, 0, $op);
+}
+@mixin ts-fff($op: .5) {
+  text-shadow: -1px 1px rgba(255, 255, 255, $op);
+}
+
+@mixin gradient-top-lighten($color: #666, $lighten: 5%) {
+  background-color: $color;
+  @include filter-gradient(lighten($color, $lighten), $color, vertical);
+  @include background-image(linear-gradient(lighten($color, $lighten) 0%, $color 100%));
+}
+@mixin gradient-top-darken($color: #666, $darken: 5%) {
+  background-color: $color;
+  @include filter-gradient(darken($color, $darken), $color, vertical);
+  @include background-image(linear-gradient(darken($color, $darken) 0%, $color 100%));
+}
+
+@mixin zurui-box($shadow: 0.15) {
+  @include box-shadow(rgba(0, 0, 0, $shadow) 0 0 2px);
+}
+@mixin rich-box($shadow: .2) {
+  @include box-shadow(rgba(0, 0, 0, $shadow) 0 0 20px inset);
+}
+
+@mixin emboss-box($border: .1, $shadow: .05, $highlight: .5) {
+  border: 1px solid rgba(0, 0, 0, $border);
+  @include box-shadow(rgba(0, 0, 0, $shadow) -1px 1px 0, rgba(255, 255, 255, $highlight) -1px 1px 0 inset);
+}
+
+@mixin button($color: #48B1F2, $font-size: 16px, $text-color: white) {
+  display: inline-block;
+  background-origin: border-box;
+  position: relative;
+  font-weight: bold;
+  @include ts-000(.1);
+  @include gradient-top-lighten($color, 5%);
+  @include border-radius(4px);
+  @include emboss-box($border: .1, $shadow: .1, $highlight: .2);
+  color: rgba($text-color, .9);
+  text-align: center;
+  font-size: $font-size;
+  padding: 0 ($font-size * 2);
+  height: $font-size * 3;
+  line-height: $font-size * 3;
+  i {
+    font-size: 130%;
+    margin-right: 5px; 
+    color: rgba($text-color, .5);
+  }
+  &:hover {
+    @include gradient-top-lighten(lighten($color, 5%), 5%);
+    text-decoration: none;
+    color: $text-color;
+    i {
+      color: $text-color;
+    }
+  }
+  &:active {
+    @include gradient-top-lighten($color, 5%);
+    top: 1px;
+  }
+}
+
+
+
+.dummy2 {
+  height: 60px;
+  width: 100%;
+}
+
+.new_signup_reader_main {
+  h1 {
+    margin-top:-100px;
+    margin-bottom:20px;
+    padding-top:110px;
+    font-weight: bold;
+    font-family: 'Verdana', arial, sans-serif;
+    color: $main-color;
+    @include ts-fff(.4);
+    font-size: 24px;
+    @include line-bottom;
+  }
+  width: 70%;
+  margin: 0px auto 0px;
+}

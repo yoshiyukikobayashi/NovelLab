@@ -1,20 +1,28 @@
 <% provide(:title, "#{@article.title}_#{@comment.commenter}の編集") %>
-<h1>話の編集</h1>
- 
-<%= form_with model: @comment, url: update_mypage_user_article_comment_path, local: true do |form| %>
-  <p>
-    <!--<%= form.label :commenter %><br>-->
-    小タイトル<br>
-    <%= form.text_field :commenter %>
-  </p>
-  <p>
-    <!--<%= form.label :body %><br>-->
-    本文<br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
- 
-<%= link_to '戻る', mypage_user_article_comment_path(@user, @article, @comment) %>
+  <div class="container2">
+    <nav id="nav2">
+      <%= link_to "#{@user.name}さんのホーム", mypage_user_articles_path(@user) %>/<%= link_to @article.title, mypage_user_article_path(@user, @article) %>/<%= link_to @comment.commenter, mypage_user_article_comment_path(@user, @article, @comment) %>
+    </nav>
+  </div>
+  <div class="dummy">
+  </div>
+</header>
+<div class="writer_article_comment_edit_main">
+  <h1>話の編集</h1>
+  <%= form_with model: @comment, url: update_mypage_user_article_comment_path, local: true do |form| %>
+    <p>
+      <!--<%= form.label :commenter %><br>-->
+      小タイトル<br>
+      <%= form.text_field :commenter %>
+    </p>
+    <p>
+      <!--<%= form.label :body %><br>-->
+      本文<br>
+      <%= form.text_area :body %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+  <%= link_to '戻る', mypage_user_article_comment_path(@user, @article, @comment) %>
+</div>

@@ -1,17 +1,21 @@
 <% provide(:title, "#{@user.name}さんアカウント変更") %>
-<h1>アカウント変更</h1>
-
-<%= form_with model: @user, url: update_mypage_user_configuration_path, local: true do |f| %>
-  <%= render 'shared/error_messages' %>
-  <p><%= f.label :name %> <%= f.text_field :name %></p>
-
-  <p><%= f.label :email %> <%= f.email_field :email %></p>
-
-  <p><%= f.label :password %> <%= f.password_field :password %></p>
-
-  <p><%= f.label :password_confirmation, "Confirmation" %> <%= f.password_field :password_confirmation %></p>
-
-  <p><%= f.submit "Update my account", class: "btn btn-primary" %></p>
-<% end %>
-
-<%= link_to 'アカウント画面へ戻る', mypage_user_configuration_path %>
+  <div class="container2">
+    <nav id="nav2">
+      <%= link_to "#{@user.name}さんのホーム", mypage_user_articles_path(@user) %>
+    </nav>
+  </div>
+  <div class="dummy">
+  </div>
+</header>
+<div class="writer_account_edit_main">
+  <h1>アカウント変更</h1>
+  <%= form_with model: @user, url: update_mypage_user_configuration_path, local: true do |f| %>
+    <%= render 'shared/error_messages' %>
+    <p><%= f.label :name %> <%= f.text_field :name %></p>
+    <p><%= f.label :email %> <%= f.email_field :email %></p>
+    <p><%= f.label :password %> <%= f.password_field :password %></p>
+    <p><%= f.label :password_confirmation, "Confirmation" %> <%= f.password_field :password_confirmation %></p>
+    <p><%= f.submit "Update my account", class: "btn btn-primary" %></p>
+  <% end %>
+  <%= link_to 'アカウント画面へ戻る', mypage_user_configuration_path %>
+</div>

@@ -1,51 +1,53 @@
 <% provide(:title, "#{@user.name}さんホーム") %>
+  <div class="container2">
+    <nav id="nav2">
+      <%= link_to "#{@user.name}さんのホーム", mypage_user_articles_path(@user) %>
+    </nav>
+  </div>
+  <div class="dummy">
+  </div>
+</header>
 <%= flash.now[:success] %>
-<h1>作者ホーム</h1>
-
-<%= link_to 'アカウント画面へ', mypage_user_configuration_path(@user) %>
-<%= link_to "ログアウト", logout_path, method: :delete %>
-<%= link_to '小説を新規作成', new_mypage_user_article_path %>
-
-<table>
-  <tr>
-    <th>連載中の小説</th>
-    <th>ジャンル</th>
-  </tr>
-  <% @articles.each do |article| %>
-    <% unless article.status %>
+<div class="writer_main">
+  <%= link_to 'アカウント画面へ', mypage_user_configuration_path(@user) %>
+  <%= link_to "ログアウト", logout_path, method: :delete %>
+  <%= link_to '小説を新規作成', new_mypage_user_article_path %>
+  <table>
     <tr>
-      <td><%= link_to article.title, mypage_user_article_path(@user, article) %></td>
-      <td><%= article.category %></td>
+      <th>連載中の小説</th>
+      <th>ジャンル</th>
     </tr>
+    <% @articles.each do |article| %>
+      <% unless article.status %>
+      <tr>
+        <td><%= link_to article.title, mypage_user_article_path(@user, article) %></td>
+        <td><%= article.category %></td>
+      </tr>
+      <% end %>
     <% end %>
-  <% end %>
-</table>
-
-<table>
-  <tr>
-    <th>完結済みの小説</th>
-    <th>ジャンル</th>
-  </tr>
-  <% @articles.each do |article| %>
-    <% unless !article.status %>
+  </table>
+  <table>
     <tr>
-      <td><%= link_to article.title, mypage_user_article_path(@user, article) %></td>
-      <td><%= article.category %></td>
+      <th>完結済みの小説</th>
+      <th>ジャンル</th>
     </tr>
+    <% @articles.each do |article| %>
+      <% unless !article.status %>
+      <tr>
+        <td><%= link_to article.title, mypage_user_article_path(@user, article) %></td>
+        <td><%= article.category %></td>
+      </tr>
+      <% end %>
     <% end %>
-  <% end %>
-</table>
-
-
-<table>
-  <tr>
-    <th><%= current_user.name%>さんへのコメント一覧</th>
-  </tr>
-  <% @tweets.each do |tweet| %>
+  </table>
+  <table>
     <tr>
-      <td><%= tweet.commenter %>さん：<%= tweet.body %></td>
+      <th><%= current_user.name%>さんへのコメント一覧</th>
     </tr>
-  <% end %>
-</table>
-
-<%= link_to 'ホームへ戻る', root_path %>
+    <% @tweets.each do |tweet| %>
+      <tr>
+        <td><%= tweet.commenter %>さん：<%= tweet.body %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

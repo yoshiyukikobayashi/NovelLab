@@ -1,7 +1,16 @@
 <% provide(:title, "#{@user.name}さんアカウント") %>
-<h3>アカウント画面</h3>
-<p>名前：<%= @user.name %></p>
-<p>email：<%= @user.email %></p>
-
-<%= link_to 'アカウント情報を変更する', edit_mypage_user_configuration_path(@user) %>
-<%= link_to '作者ホームへ戻る', mypage_user_articles_path %>
+  <div class="container2">
+    <nav id="nav2">
+      <%= link_to "#{@user.name}さんのホーム", mypage_user_articles_path(@user) %>
+    </nav>
+  </div>
+  <div class="dummy">
+  </div>
+</header>
+<div class="writer_account_main">
+  <h1>アカウント画面</h1>
+  <p>名前：<%= @user.name %></p>
+  <p>email：<%= @user.email %></p>
+  <%= link_to 'アカウント情報を変更する', edit_mypage_user_configuration_path(@user) %>
+  <%= link_to '作者ホームへ戻る', mypage_user_articles_path %>
+</div>

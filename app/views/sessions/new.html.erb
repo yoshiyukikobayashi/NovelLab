@@ -1,17 +1,15 @@
 <% provide(:title, "作者ログイン") %>
-<%= flash.now[:danger] %>
-<h1>Log in</h1>
-
-<%= form_for(:session, url: login_path) do |f| %>
-
-  <%= f.label :email %>
-  <%= f.email_field :email, class: 'form-control' %><br>
-
-  <%= f.label :password %>
-  <%= f.password_field :password, class: 'form-control' %><br>
-
-  <%= f.submit "Log in", class: "btn btn-primary" %>
-<% end %>
-
-<p>新規の方は<%= link_to "Sign up now!", signup_path %>へ</p>
-<%= link_to 'ホームに戻る', root_path %>
+  <div class="dummy2">
+  </div>
+</header>
+  <div class="new_reader_main">
+    <h1>作者ログイン</h1>
+    <%= flash.now[:danger] %>
+    <%= form_for(:session, url: login_path) do |f| %>
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %><br>
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %><br>
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+  </div>

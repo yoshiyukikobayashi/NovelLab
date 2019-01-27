@@ -1,23 +1,29 @@
 <% provide(:title, "#{@article.title}") %>
-<h1>
-  <strong></strong>
-  <%= @article.title %>
-</h1>
-<br>ジャンル：<%= @article.category %>
-<% if @article.status %>
-<br>完結済み
-<% else %>
-<br>連載中
-<% end %>
-
-<p>
-  <strong>あらすじ<br></strong>
-  <%= @article.text %>
-</p>
-<%= link_to '編集する', edit_mypage_user_article_path(@user, @article) %>
-<%= link_to '削除する', mypage_user_article_path(@user, @article), method: :delete, data: { confirm: 'Are you sure?' } %>
-
-<p><strong>各話</strong> <%= link_to '追加する', new_mypage_user_article_comment_path(@user, @article), method: :get %></p>
-<%= render @article.comments %>
-
-<%= link_to '作者ホームへ戻る', mypage_user_articles_path %>
+  <div class="container2">
+    <nav id="nav2">
+      <%= link_to "#{@user.name}さんのホーム", mypage_user_articles_path(@user) %>/<%= link_to @article.title, mypage_user_article_path(@user, @article) %>
+    </nav>
+  </div>
+  <div class="dummy">
+  </div>
+</header>
+<div class="writer_article_main">
+  <h1>
+    <%= @article.title %>
+  </h1>
+  ジャンル：<%= @article.category %>
+  <% if @article.status %>
+  <br>完結済み
+  <% else %>
+  <br>連載中
+  <% end %>
+  <p>
+    <strong>あらすじ<br></strong>
+    <%= @article.text %>
+  </p>
+  <%= link_to '編集する', edit_mypage_user_article_path(@user, @article) %>
+  <%= link_to '削除する', mypage_user_article_path(@user, @article), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <p><strong>各話</strong> <%= link_to '追加する', new_mypage_user_article_comment_path(@user, @article), method: :get %></p>
+  <%= render @article.comments %>
+  <%= link_to '作者ホームへ戻る', mypage_user_articles_path %>
+</div>

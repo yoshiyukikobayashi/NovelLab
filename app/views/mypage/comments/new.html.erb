@@ -1,20 +1,28 @@
 <% provide(:title, "#{@article.title}_追加") %>
-<h1>話の新規作成</h1>
- 
-<%= form_with model: @comment, url: create_mypage_user_article_comment_path, local: true do |form| %>
-  <p>
-    <!--<%= form.label :commenter %><br>-->
-    小タイトル<br>
-    <%= form.text_field :commenter %>
-  </p>
-  <p>
-    <!--<%= form.label :body %><br>-->
-    本文<br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
- 
-<%= link_to '戻る', mypage_user_article_path(@user, @article) %>
+  <div class="container2">
+    <nav id="nav2">
+      <%= link_to "#{@user.name}さんのホーム", mypage_user_articles_path(@user) %>/<%= link_to @article.title, mypage_user_article_path(@user, @article) %>
+    </nav>
+  </div>
+  <div class="dummy">
+  </div>
+</header>
+<div class="writer_article_comment_new_main">
+  <h1>話の新規作成</h1>
+  <%= form_with model: @comment, url: create_mypage_user_article_comment_path, local: true do |form| %>
+    <p>
+      <!--<%= form.label :commenter %><br>-->
+      小タイトル<br>
+      <%= form.text_field :commenter %>
+    </p>
+    <p>
+      <!--<%= form.label :body %><br>-->
+      本文<br>
+      <%= form.text_area :body %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+  <%= link_to '戻る', mypage_user_article_path(@user, @article) %>
+</div>

@@ -1,29 +1,32 @@
 <% provide(:title, "#{@article.title}") %>
-<h1>
-  <strong></strong>
-  <%= @article.title %>
-</h1>
-
-作者：<%= @user.name %><br>
-ジャンル：<%= @article.category %>
-<% if @article.status %>
-<br>完結済み
-<% else %>
-<br>連載中
-<% end %>
-
-<p>
-  <strong>あらすじ<br></strong>
-  <%= @article.text %>
-</p>
-
-<p><strong>各話</strong> </p>
-
-<ul>
-  <% @article.comments.each do |comment| %>
-    <li><%= link_to comment.commenter, user_article_comment_path(@user, @article, comment) %></li>
-  <% end %>
-</ul>
-
-
-<%= link_to '作者ホームに戻る', user_path(@user) %>
+  <div class="container2">
+    <nav id="nav2">
+      <%= link_to "#{@user.name}さんのホーム", user_path(@user) %>/<%= link_to @article.title, user_article_path(@user, @article) %>
+    </nav>
+  </div>
+  <div class="dummy">
+  </div>
+</header>
+  <div class="reader_article_main">
+    <h1><%= @article.title %></h1>
+    <p>
+      <%= @article.category %>
+      <% if @article.status %>
+      / 完結済み
+      <% else %>
+      / 連載中
+      <% end %>
+    </p>
+    <p>by <%= @user.name %></p>
+    <p>
+      <strong>あらすじ<br></strong>
+      <%= @article.text %>
+    </p>
+    <p><strong>各話</strong> </p>
+    <ul>
+      <% @article.comments.each do |comment| %>
+        <li><%= link_to comment.commenter, user_article_comment_path(@user, @article, comment) %></li>
+      <% end %>
+    </ul>
+    <%= link_to '作者ホームに戻る', user_path(@user) %>
+  </div>

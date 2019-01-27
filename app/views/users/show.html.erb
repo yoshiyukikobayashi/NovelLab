@@ -1,35 +1,41 @@
 <% provide(:title, "#{@user.name}さんホーム") %>
-<h1><%= @user.name%>さんの作者ホーム</h1>
-
-<table>
-  <tr>
-    <th>連載中の小説</th>
-    <th>ジャンル</th>
-  </tr>
-  <% @articles.each do |article| %>
-    <% unless article.status %>
-    <tr>
-      <td><%= link_to article.title, user_article_path(@user, article) %></td>
-      <td><%= article.category %></td>
-    </tr>
-    <% end %>
-  <% end %>
-</table>
-
-<table>
-  <tr>
-    <th>完結済みの小説</th>
-    <th>ジャンル</th>
-  </tr>
-  <% @articles.each do |article| %>
-    <% unless !article.status %>
-    <tr>
-      <td><%= link_to article.title, user_article_path(@user, article) %></td>
-      <td><%= article.category %></td>
-    </tr>
-    <% end %>
-  <% end %>
-</table>
-
-
-<%= link_to 'ホームへ戻る', root_path %>
+  <div class="container2">
+    <nav id="nav2">
+      <%= link_to "#{@user.name}さんのホーム", user_path(@user) %>
+    </nav>
+  </div>
+  <div class="dummy">
+  </div>
+</header>
+  <div class="reader_writer_main">
+    <h1>連載中の小説</h1>
+    <table>
+      <tr>
+        <th>連載中の小説</th>
+        <th>ジャンル</th>
+      </tr>
+      <% @articles.each do |article| %>
+        <% unless article.status %>
+        <tr>
+          <td><%= link_to article.title, user_article_path(@user, article) %></td>
+          <td><%= article.category %></td>
+        </tr>
+        <% end %>
+      <% end %>
+    </table>
+    <h1>完結済みの小説</h1>
+    <table>
+      <tr>
+        <th>完結済みの小説</th>
+        <th>ジャンル</th>
+      </tr>
+      <% @articles.each do |article| %>
+        <% unless !article.status %>
+        <tr>
+          <td><%= link_to article.title, user_article_path(@user, article) %></td>
+          <td><%= article.category %></td>
+        </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
